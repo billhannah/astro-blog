@@ -3,6 +3,13 @@ import rss from '@astrojs/rss';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 export async function GET(context) {
+	if (!context.site) {
+		throw new Error(
+			'Cannot generate rss.xml: the `site` option is not set in astro.config.mjs. ' +
+				'The RSS feed needs an absolute site URL to build item links.',
+		);
+	}
+
 	const posts = await getCollection('blog');
 	return rss({
 		title: SITE_TITLE,
