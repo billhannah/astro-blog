@@ -1,0 +1,14 @@
+---
+import type { SocialLink } from '../consts';
+
+interface Props {
+	platform: SocialLink['platform'];
+	icon: string;
+}
+
+const { platform, icon } = Astro.props;
+---
+
+<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon={`social/${platform}`}>
+	<path fill="currentColor" d={icon}></path>
+</svg>
